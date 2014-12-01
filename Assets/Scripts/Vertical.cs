@@ -8,8 +8,17 @@ public class Vertical : MonoBehaviour {
 
 	public GameObject upThruster, leftThruster, rightThruster, downThruster;
 
+	public int maxHealth = 3;
+
+	int health;
+
+	public GameObject healthMesh;
+	public GameObject scoreMesh;
+
+	int points = 0;
+
 	void Start () {
-	
+		health = maxHealth;
 	}
 
 	void Update () {
@@ -64,5 +73,18 @@ public class Vertical : MonoBehaviour {
 		if (pos.y < -5.9f)
 			pos.y = 5.8f;
 		transform.position = pos;
+	}
+
+	void TakeDamage() {
+		health--;
+		healthMesh.GetComponent<TextMesh> ().text = "Health: " + health;
+		if(health <= 0) {
+			Application.LoadLevel(0);
+		}
+	}
+
+	void GainPoint() {
+		points++;
+		scoreMesh.GetComponent<TextMesh> ().text = "Score:    " + points;
 	}
 }

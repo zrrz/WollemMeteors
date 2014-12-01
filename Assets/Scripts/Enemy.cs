@@ -12,12 +12,9 @@ public class Enemy : MonoBehaviour {
 
 	void Start () {
 		player = GameObject.Find ("Player");
-		if (GameObject.Find ("Spawner").GetComponent<EnemySpawner> ().spawnDepth)
-			dir = Vector3.back;
-		else {
-			Vector2 pos = Random.insideUnitCircle * 7f;
-			dir = (player.transform.position + new Vector3 (pos.x, pos.y)) - transform.position;
-		}
+
+		Vector2 pos = Random.insideUnitCircle * 7f;
+		dir = (player.transform.position + new Vector3 (pos.x, pos.y)) - transform.position;
 
 		dir.Normalize ();
 		speed += Random.Range (-speedVariance, speedVariance);
@@ -33,5 +30,8 @@ public class Enemy : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col) {
 		Instantiate(particle, col.contacts [0].point, Quaternion.LookRotation(col.contacts [0].normal, Vector3.back));
+		col.gameObject.SendMessage ("TakeDamage", SendMessageOptions.DontRequireReceiver);
+		if(col.gameObject.tag == "Player")
+			audio.Play ();
 	}
 }
