@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: 8e45fe244ea8d5642875cf7b0b9f8f7b
+guid: 6fc861fe3ed0b904e891952da668932d
 TextureImporter:
   fileIDToRecycleName:
-    21300000: background
+    21300000: BLUE-DRESS 1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -23,9 +23,9 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 2048
+  maxTextureSize: 4096
   textureSettings:
-    filterMode: -1
+    filterMode: 2
     aniso: 1
     mipBias: -1
     wrapMode: 1

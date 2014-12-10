@@ -9,7 +9,9 @@ public class Coin : MonoBehaviour {
 	public float speedVariance = 0.4f;
 	
 	public GameObject particle;
-	
+
+	float rotSpeed;
+
 	void Start () {
 		player = GameObject.Find ("Player");
 		
@@ -19,6 +21,8 @@ public class Coin : MonoBehaviour {
 		dir.Normalize ();
 		speed += Random.Range (-speedVariance, speedVariance);
 		rigidbody2D.velocity = dir * speed;
+
+		rotSpeed = Random.Range (-0.7f, 0.7f);
 		Destroy (gameObject, 30.0f);
 	}
 	
@@ -26,6 +30,7 @@ public class Coin : MonoBehaviour {
 		if (rigidbody2D.velocity.sqrMagnitude < speed * 0.7f) {
 			rigidbody2D.velocity *= 1.2f;
 		}
+		transform.Rotate (0f, 0f, rotSpeed);
 	}
 	
 	void OnTriggerEnter2D(Collider2D col) {
